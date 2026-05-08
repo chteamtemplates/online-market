@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us — Trendora</title>
+  <meta name="description" content="The Trendora story — heritage tailoring, contemporary design, and a commitment to lasting quality.">
+  <meta name="theme-color" content="#1A1A1A">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="announcement">
+    Free Shipping On Orders Over $100 <a href="offers.html">Shop Now →</a>
+  </div>
+
+  <nav class="nav">
+    <a href="index.html" class="logo">Trend<span>o</span>ra</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Shop</a></li>
+      <li><a href="offers.html">Offers</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="icon-btn" aria-label="Search" data-icon="search"></button>
+      <a href="#" class="icon-btn" aria-label="Account" data-icon="user"></a>
+      <a href="#" class="icon-btn" aria-label="Wishlist">
+        <span data-icon="heart"></span>
+        <span class="badge-pill wish-count"></span>
+      </a>
+      <button class="icon-btn" aria-label="Cart" onclick="toggleCart()">
+        <span data-icon="bag"></span>
+        <span class="badge-pill cart-count"></span>
+      </button>
+      <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="mobile-nav">
+    <a href="index.html">Home</a><a href="products.html">Shop</a><a href="offers.html">Offers</a><a href="about.html">About</a><a href="contact.html">Contact</a>
+  </div>
+
+  <div class="page-header">
+    <div class="breadcrumb"><a href="index.html">Home</a><span class="sep">/</span> About</div>
+    <h1>Our Story</h1>
+    <p>Where heritage tailoring meets contemporary design.</p>
+  </div>
+
+  <section class="about-hero">
+    <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=900&q=80&auto=format&fit=crop" alt="Trendora atelier">
+    <div>
+      <span class="eyebrow">Founded 2018</span>
+      <h2 style="margin-top:8px">Crafted with intention.<br>Worn with confidence.</h2>
+      <p>Trendora was founded on a simple belief: real elegance is timeless. We started in a small atelier in New York with a single goal — to create pieces that age beautifully and earn their place in your wardrobe season after season.</p>
+      <p>Today, our designs are crafted across heritage workshops in Italy, Portugal, and Turkey. Each garment is hand-finished, each accessory thoughtfully sourced, and each detail considered with care.</p>
+      <p>We don't follow trends. We build collections that stand alone — refined, considered, and made to last.</p>
+      <a href="products.html" class="btn btn-primary" style="margin-top:8px">Shop the Collection</a>
+    </div>
+  </section>
+
+  <section class="section section-soft">
+    <div class="container" style="padding:0">
+      <div class="section-header" style="justify-content:center;flex-direction:column;align-items:center;text-align:center">
+        <span class="eyebrow">Our Values</span>
+        <h2>What We Stand For</h2>
+      </div>
+      <div class="values-grid">
+        <div class="value-card">
+          <div data-icon="award"></div>
+          <h3>Premium Quality</h3>
+          <p>Every fiber and stitch is chosen with intention. We work only with heritage manufacturers and ethical suppliers.</p>
+        </div>
+        <div class="value-card">
+          <div data-icon="leaf"></div>
+          <h3>Sustainable Craft</h3>
+          <p>Slow fashion done right. Smaller batches, natural materials, and deliberate design decisions that reduce waste.</p>
+        </div>
+        <div class="value-card">
+          <div data-icon="shield"></div>
+          <h3>Lifetime Service</h3>
+          <p>Every piece comes with a 1-year warranty and access to our care service. Built to last — backed for life.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="padding:0">
+      <div class="section-header" style="justify-content:center;flex-direction:column;align-items:center;text-align:center">
+        <span class="eyebrow">By the Numbers</span>
+        <h2>Trendora Today</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center">
+        <div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:600;color:var(--gold-dark)">12K+</div>
+          <div style="font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-top:4px">Happy Customers</div>
+        </div>
+        <div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:600;color:var(--gold-dark)">200+</div>
+          <div style="font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-top:4px">Premium Designs</div>
+        </div>
+        <div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:600;color:var(--gold-dark)">35</div>
+          <div style="font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-top:4px">Countries Served</div>
+        </div>
+        <div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:600;color:var(--gold-dark)">4.9★</div>
+          <div style="font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-top:4px">Avg. Rating</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">Trend<span>o</span>ra</div>
+        <p class="footer-desc">We believe true elegance begins with quality.</p>
+        <div class="footer-social">
+          <a href="#" data-icon="ig"></a><a href="#" data-icon="fb"></a><a href="#" data-icon="tw"></a><a href="#" data-icon="pin2"></a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Shop</h4><ul><li><a href="products.html">All Products</a></li><li><a href="offers.html">Sale</a></li></ul></div>
+      <div class="footer-col"><h4>Care</h4><ul><li><a href="#">Returns</a></li><li><a href="contact.html">FAQ</a></li></ul></div>
+      <div class="footer-col"><h4>Company</h4><ul><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 Trendora. All rights reserved.</span>
+      <div class="footer-pay">
+        <span class="footer-pay-icon">VISA</span><span class="footer-pay-icon">MC</span><span class="footer-pay-icon">AMEX</span><span class="footer-pay-icon">PAYPAL</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
+  <aside class="cart-drawer" id="cart-drawer">
+    <div class="cart-header">
+      <h3 class="cart-title">Shopping Bag</h3>
+      <button class="cart-close" onclick="toggleCart()" data-icon="close"></button>
+    </div>
+    <div class="cart-body" id="cart-body"></div>
+    <div class="cart-footer" id="cart-footer"></div>
+  </aside>
+
+  <div id="toast"></div>
+  <script src="store.js"></script>
+  <script>
+  // Inject icons in the value cards
+  document.querySelectorAll('.value-card div[data-icon]').forEach(el => {
+    el.style.display = 'inline-block';
+  });
+  </script>
+</body>
+</html>

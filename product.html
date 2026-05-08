@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Detail — Trendora</title>
+  <meta name="description" content="Discover this signature Trendora piece in detail.">
+  <meta name="theme-color" content="#1A1A1A">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="announcement">
+    Free Shipping On Orders Over $100 <a href="offers.html">Shop Now →</a>
+  </div>
+
+  <nav class="nav">
+    <a href="index.html" class="logo">Trend<span>o</span>ra</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html" class="active">Shop</a></li>
+      <li><a href="offers.html">Offers</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="icon-btn" aria-label="Search" data-icon="search"></button>
+      <a href="#" class="icon-btn" aria-label="Account" data-icon="user"></a>
+      <a href="#" class="icon-btn" aria-label="Wishlist">
+        <span data-icon="heart"></span>
+        <span class="badge-pill wish-count"></span>
+      </a>
+      <button class="icon-btn" aria-label="Cart" onclick="toggleCart()">
+        <span data-icon="bag"></span>
+        <span class="badge-pill cart-count"></span>
+      </button>
+      <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="mobile-nav">
+    <a href="index.html">Home</a><a href="products.html">Shop</a><a href="offers.html">Offers</a><a href="about.html">About</a><a href="contact.html">Contact</a>
+  </div>
+
+  <div class="page-header" style="padding-top:32px; padding-bottom:32px">
+    <div class="breadcrumb" id="breadcrumb">
+      <a href="index.html">Home</a><span class="sep">/</span> <a href="products.html">Shop</a><span class="sep">/</span> <span id="bc-name">Loading…</span>
+    </div>
+  </div>
+
+  <main class="product-layout" id="product-container">
+    <!-- product detail injected via JS -->
+  </main>
+
+  <section class="section section-soft">
+    <div class="container" style="padding:0">
+      <div class="section-header">
+        <div>
+          <span class="eyebrow">You May Also Like</span>
+          <h2>Related Products</h2>
+        </div>
+        <a href="products.html" class="section-link">Shop All <span data-icon="arrowR"></span></a>
+      </div>
+      <div id="related-grid" class="products-grid"></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">Trend<span>o</span>ra</div>
+        <p class="footer-desc">We believe true elegance begins with quality.</p>
+        <div class="footer-social">
+          <a href="#" data-icon="ig"></a><a href="#" data-icon="fb"></a><a href="#" data-icon="tw"></a><a href="#" data-icon="pin2"></a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Shop</h4><ul><li><a href="products.html">All Products</a></li><li><a href="offers.html">Sale</a></li></ul></div>
+      <div class="footer-col"><h4>Care</h4><ul><li><a href="#">Returns</a></li><li><a href="contact.html">FAQ</a></li></ul></div>
+      <div class="footer-col"><h4>Company</h4><ul><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 Trendora. All rights reserved.</span>
+      <div class="footer-pay">
+        <span class="footer-pay-icon">VISA</span><span class="footer-pay-icon">MC</span><span class="footer-pay-icon">AMEX</span><span class="footer-pay-icon">PAYPAL</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
+  <aside class="cart-drawer" id="cart-drawer">
+    <div class="cart-header">
+      <h3 class="cart-title">Shopping Bag</h3>
+      <button class="cart-close" onclick="toggleCart()" data-icon="close"></button>
+    </div>
+    <div class="cart-body" id="cart-body"></div>
+    <div class="cart-footer" id="cart-footer"></div>
+  </aside>
+
+  <div id="toast"></div>
+  <script src="store.js"></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+    const id = parseInt(params.get('id'));
+    const p = PRODUCTS.find(x => x.id === id);
+    const container = document.getElementById('product-container');
+
+    if (!p) {
+      container.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:80px 20px"><h2>Product not found</h2><p style="margin:12px 0 24px">We could not find the item you are looking for.</p><a class="btn btn-primary" href="products.html">Back to Shop</a></div>';
+      return;
+    }
+
+    document.getElementById('bc-name').textContent = p.name;
+    document.title = `${p.name} — Trendora`;
+
+    const gallery = (p.gallery && p.gallery.length) ? p.gallery : (p.image ? [p.image] : []);
+    const oldPriceHtml = p.oldPrice ? `<span class="pd-price-old">${formatPrice(p.oldPrice)}</span><span class="pd-save-pill">Save ${Math.round((1 - p.price / p.oldPrice) * 100)}%</span>` : '';
+    const stockTxt = p.stock <= 5 ? `Only ${p.stock} left in stock` : 'In Stock';
+    const inWish = isInWishlist(p.id);
+
+    container.innerHTML = `
+      <div class="pd-gallery">
+        <div class="gallery-main" id="gallery-main">
+          ${gallery.length ? `<img src="${gallery[0]}" alt="${p.name}" id="main-img"
+            onerror="this.outerHTML='<div class=&quot;product-color-fallback&quot; style=&quot;background:${p.color}&quot;>${p.name}</div>'">`
+          : `<div class="product-color-fallback" style="background:${p.color}">${p.name}</div>`}
+        </div>
+        ${gallery.length > 1 ? `<div class="gallery-thumbs">
+          ${gallery.map((src, i) => `<div class="gallery-thumb ${i === 0 ? 'active' : ''}" data-src="${src}"><img src="${src}" alt="" loading="lazy"></div>`).join('')}
+        </div>` : ''}
+      </div>
+
+      <div class="pd-info">
+        <span class="eyebrow">${p.brand}</span>
+        <h1>${p.name}</h1>
+
+        <div class="pd-rating">
+          <span class="stars">${renderStars(p.rating)}</span>
+          <span>${p.rating.toFixed(1)} · ${p.reviews} reviews</span>
+        </div>
+
+        <div class="pd-price-row">
+          <span class="pd-price">${formatPrice(p.price)}</span>
+          ${oldPriceHtml}
+        </div>
+
+        <p class="pd-desc">${p.desc}</p>
+
+        <div class="pd-options">
+          <div class="pd-option-row">
+            <div class="pd-option-label">
+              <span>Size</span>
+              <span class="pd-option-link">Size Guide →</span>
+            </div>
+            <div class="pd-sizes" id="pd-sizes">
+              ${['XS','S','M','L','XL'].map((s, i) => `<button class="pd-size-btn ${i === 1 ? 'active' : ''}">${s}</button>`).join('')}
+            </div>
+          </div>
+
+          <div class="pd-option-row">
+            <div class="pd-option-label">
+              <span>Color</span>
+            </div>
+            <div class="pd-colors" id="pd-colors">
+              ${[p.color, '#2C2C2A', '#C4A882'].map((c, i) => `<button class="pd-color-btn ${i === 0 ? 'active' : ''}" style="background:${c}" aria-label="Color"></button>`).join('')}
+            </div>
+          </div>
+        </div>
+
+        <div class="pd-purchase">
+          <div class="pd-qty">
+            <button id="pd-minus" aria-label="Decrease">−</button>
+            <span id="pd-qty">1</span>
+            <button id="pd-plus" aria-label="Increase">+</button>
+          </div>
+          <button class="btn btn-primary pd-buy" id="pd-add">${icon('bag')} Add to Bag</button>
+          <button class="btn-icon ${inWish ? 'active' : ''}" id="pd-wish" data-wish="${p.id}" aria-label="Wishlist" style="width:48px;height:48px">${inWish ? icon('heartFill') : icon('heart')}</button>
+        </div>
+
+        <div class="pd-meta">
+          <div>${icon('check')}<strong>Availability</strong> ${stockTxt}</div>
+          <div>${icon('truck')}<strong>Shipping</strong> Free over $100 · 3-5 business days</div>
+          <div>${icon('refresh')}<strong>Returns</strong> Free 30-day returns</div>
+          <div>${icon('shield')}<strong>Warranty</strong> 1-year quality guarantee</div>
+        </div>
+
+        <div class="pd-features">
+          <div class="pd-feature">${icon('award')}<span>Authenticity Guarantee</span></div>
+          <div class="pd-feature">${icon('leaf')}<span>Sustainable Materials</span></div>
+          <div class="pd-feature">${icon('gift')}<span>Premium Gift Box</span></div>
+          <div class="pd-feature">${icon('scissors')}<span>Hand-finished Detail</span></div>
+        </div>
+      </div>
+    `;
+
+    // Quantity controls
+    let qty = 1;
+    const qe = document.getElementById('pd-qty');
+    document.getElementById('pd-minus').onclick = () => { if (qty > 1) { qty--; qe.textContent = qty; } };
+    document.getElementById('pd-plus').onclick = () => { if (qty < p.stock) { qty++; qe.textContent = qty; } };
+
+    // Size & color toggles
+    document.querySelectorAll('#pd-sizes .pd-size-btn').forEach(btn => {
+      btn.onclick = () => {
+        document.querySelectorAll('#pd-sizes .pd-size-btn').forEach(x => x.classList.remove('active'));
+        btn.classList.add('active');
+      };
+    });
+    document.querySelectorAll('#pd-colors .pd-color-btn').forEach(btn => {
+      btn.onclick = () => {
+        document.querySelectorAll('#pd-colors .pd-color-btn').forEach(x => x.classList.remove('active'));
+        btn.classList.add('active');
+      };
+    });
+
+    // Gallery thumb switching
+    document.querySelectorAll('.gallery-thumb').forEach(t => {
+      t.onclick = () => {
+        document.querySelectorAll('.gallery-thumb').forEach(x => x.classList.remove('active'));
+        t.classList.add('active');
+        const main = document.getElementById('main-img');
+        if (main) main.src = t.dataset.src;
+      };
+    });
+
+    // Add to cart
+    document.getElementById('pd-add').onclick = () => addToCart(p.id, qty);
+
+    // Wishlist
+    document.getElementById('pd-wish').onclick = () => toggleWishlist(p.id);
+
+    // Related products
+    const related = PRODUCTS.filter(x => x.category === p.category && x.id !== p.id).slice(0, 4);
+    document.getElementById('related-grid').innerHTML = related.map(renderProductCard).join('');
+  });
+  </script>
+</body>
+</html>

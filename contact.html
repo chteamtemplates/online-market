@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us — Trendora</title>
+  <meta name="description" content="Get in touch with the Trendora team. We're here to help with orders, sizing, returns, and styling.">
+  <meta name="theme-color" content="#1A1A1A">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="announcement">
+    Free Shipping On Orders Over $100 <a href="offers.html">Shop Now →</a>
+  </div>
+
+  <nav class="nav">
+    <a href="index.html" class="logo">Trend<span>o</span>ra</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Shop</a></li>
+      <li><a href="offers.html">Offers</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="icon-btn" aria-label="Search" data-icon="search"></button>
+      <a href="#" class="icon-btn" aria-label="Account" data-icon="user"></a>
+      <a href="#" class="icon-btn" aria-label="Wishlist">
+        <span data-icon="heart"></span>
+        <span class="badge-pill wish-count"></span>
+      </a>
+      <button class="icon-btn" aria-label="Cart" onclick="toggleCart()">
+        <span data-icon="bag"></span>
+        <span class="badge-pill cart-count"></span>
+      </button>
+      <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="mobile-nav">
+    <a href="index.html">Home</a><a href="products.html">Shop</a><a href="offers.html">Offers</a><a href="about.html">About</a><a href="contact.html">Contact</a>
+  </div>
+
+  <div class="page-header">
+    <div class="breadcrumb"><a href="index.html">Home</a><span class="sep">/</span> Contact Us</div>
+    <h1>Contact Us</h1>
+    <p>We're here to help. Don't hesitate to reach out anytime — our team typically replies within an hour.</p>
+  </div>
+
+  <section class="contact-grid">
+    <div>
+      <div class="info-card">
+        <div class="info-icon" data-icon="pin"></div>
+        <div>
+          <h3>Visit Our Showroom</h3>
+          <p>123 Fashion Avenue, Suite 100<br>New York, NY 10001, USA</p>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon" data-icon="phone"></div>
+        <div>
+          <h3>Call Us</h3>
+          <p>+1 (555) 123-4567<br>Mon–Fri, 9am–6pm EST</p>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon" data-icon="mail"></div>
+        <div>
+          <h3>Email Support</h3>
+          <p>support@trendora.com<br>orders@trendora.com</p>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon" data-icon="chat"></div>
+        <div>
+          <h3>Live Chat</h3>
+          <p>Available on Instagram DMs<br>Typically replies within 1 hour</p>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h3 class="form-section-title">Send a Message</h3>
+      <form id="contact-form" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="label">Full Name</label>
+            <input type="text" class="input" required>
+          </div>
+          <div class="form-group">
+            <label class="label">Email Address</label>
+            <input type="email" class="input" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="label">Subject</label>
+          <select class="select">
+            <option>Product Inquiry</option>
+            <option>Order Tracking</option>
+            <option>Return or Exchange</option>
+            <option>Complaint</option>
+            <option>Suggestion</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="label">Your Message</label>
+          <textarea class="textarea" rows="6" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+        <p id="contact-success" style="display:none;text-align:center;color:var(--success);margin-top:16px;font-size:14px">
+          ✓ Your message was sent successfully. We'll be in touch soon.
+        </p>
+      </form>
+    </div>
+  </section>
+
+  <section class="section section-soft">
+    <div class="container" style="padding:0;max-width:800px">
+      <div class="section-header" style="justify-content:center;text-align:center;flex-direction:column;align-items:center">
+        <span class="eyebrow">Help Center</span>
+        <h2>Frequently Asked Questions</h2>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">How long does shipping take?</div>
+        <div class="faq-a">
+          Standard shipping takes 3–5 business days within the US. International orders typically arrive in 7–14 business days.
+          Express options are available at checkout. You'll receive a tracking link via email once your order ships.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What is your return policy?</div>
+        <div class="faq-a">
+          We accept returns within 30 days of delivery. Items must be in original condition with tags attached.
+          Returns are completely free — we'll cover the prepaid shipping label. Refunds are processed within 5 business days of receipt.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What payment methods do you accept?</div>
+        <div class="faq-a">
+          We accept Visa, Mastercard, American Express, PayPal, Apple Pay, and Cash on Delivery in select regions.
+          All payments are secured with 256-bit SSL encryption.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Are products authentic and guaranteed?</div>
+        <div class="faq-a">
+          Yes — every Trendora product is 100% authentic and crafted from premium materials.
+          Each item ships with a certificate of authenticity and a 1-year quality warranty.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Do you offer international shipping?</div>
+        <div class="faq-a">
+          Yes — we ship worldwide. Shipping fees and delivery times depend on the destination and are calculated at checkout.
+          Customs and import duties (if any) are the responsibility of the recipient.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How do I find the right size?</div>
+        <div class="faq-a">
+          Each product page includes a detailed size guide with measurements. If you're between sizes, we recommend going up.
+          Still unsure? Contact our styling team and we'll help you choose.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">Trend<span>o</span>ra</div>
+        <p class="footer-desc">We believe true elegance begins with quality.</p>
+        <div class="footer-social">
+          <a href="#" data-icon="ig"></a><a href="#" data-icon="fb"></a><a href="#" data-icon="tw"></a><a href="#" data-icon="pin2"></a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Shop</h4><ul><li><a href="products.html">All Products</a></li><li><a href="offers.html">Sale</a></li></ul></div>
+      <div class="footer-col"><h4>Care</h4><ul><li><a href="#">Returns</a></li><li><a href="contact.html">FAQ</a></li></ul></div>
+      <div class="footer-col"><h4>Company</h4><ul><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 Trendora. All rights reserved.</span>
+      <div class="footer-pay">
+        <span class="footer-pay-icon">VISA</span><span class="footer-pay-icon">MC</span><span class="footer-pay-icon">AMEX</span><span class="footer-pay-icon">PAYPAL</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
+  <aside class="cart-drawer" id="cart-drawer">
+    <div class="cart-header">
+      <h3 class="cart-title">Shopping Bag</h3>
+      <button class="cart-close" onclick="toggleCart()" data-icon="close"></button>
+    </div>
+    <div class="cart-body" id="cart-body"></div>
+    <div class="cart-footer" id="cart-footer"></div>
+  </aside>
+
+  <div id="toast"></div>
+  <script src="store.js"></script>
+  <script>
+  document.getElementById('contact-form').addEventListener('submit', e => {
+    e.preventDefault();
+    document.getElementById('contact-success').style.display = 'block';
+    e.target.reset();
+    showToast('Message sent — we will be in touch soon', 'success');
+  });
+  </script>
+</body>
+</html>
