@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop All Products — Trendora</title>
+  <meta name="description" content="Browse the complete Trendora collection. Filter by category, price, size, and discover your next signature piece.">
+  <meta name="theme-color" content="#1A1A1A">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="announcement">
+    Free Shipping On Orders Over $100 <a href="offers.html">Shop Now →</a>
+  </div>
+
+  <nav class="nav">
+    <a href="index.html" class="logo">Trend<span>o</span>ra</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html" class="active">Shop</a></li>
+      <li><a href="offers.html">Offers</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="icon-btn" aria-label="Search" data-icon="search"></button>
+      <a href="#" class="icon-btn" aria-label="Account" data-icon="user"></a>
+      <a href="#" class="icon-btn" aria-label="Wishlist">
+        <span data-icon="heart"></span>
+        <span class="badge-pill wish-count"></span>
+      </a>
+      <button class="icon-btn" aria-label="Cart" onclick="toggleCart()">
+        <span data-icon="bag"></span>
+        <span class="badge-pill cart-count"></span>
+      </button>
+      <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="mobile-nav">
+    <a href="index.html">Home</a><a href="products.html">Shop</a><a href="offers.html">Offers</a><a href="about.html">About</a><a href="contact.html">Contact</a>
+  </div>
+
+  <div class="page-header">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a><span class="sep">/</span> Shop
+    </div>
+    <h1>All Products</h1>
+    <p>Discover the full Trendora collection — luxury fashion crafted for those who appreciate quality.</p>
+  </div>
+
+  <main class="shop-layout">
+    <!-- SIDEBAR -->
+    <aside class="shop-sidebar" id="shop-sidebar">
+      <div class="filter-block">
+        <h4>Categories</h4>
+        <ul class="filter-list">
+          <li><label data-cat="All" class="active">All Items <span class="filter-count" id="cnt-all"></span></label></li>
+          <li><label data-cat="Women">Women <span class="filter-count" id="cnt-women"></span></label></li>
+          <li><label data-cat="Men">Men <span class="filter-count" id="cnt-men"></span></label></li>
+          <li><label data-cat="Shoes">Shoes <span class="filter-count" id="cnt-shoes"></span></label></li>
+          <li><label data-cat="Accessories">Accessories <span class="filter-count" id="cnt-acc"></span></label></li>
+        </ul>
+      </div>
+
+      <div class="filter-block">
+        <h4>Price Range</h4>
+        <input type="range" id="price-range" min="50" max="500" value="500" step="10" style="width:100%; accent-color:var(--gold)">
+        <div id="price-label" style="font-size:13px; color:var(--muted); margin-top:8px">$0 — $500</div>
+      </div>
+
+      <div class="filter-block">
+        <h4>Special</h4>
+        <ul class="filter-list">
+          <li>
+            <label class="checkbox">
+              <input type="checkbox" id="filter-sale">
+              <span>Sale items only</span>
+            </label>
+          </li>
+        </ul>
+      </div>
+
+      <div class="filter-block">
+        <h4>Colors</h4>
+        <div class="swatches">
+          <button class="swatch" style="background:#1C1C1C" aria-label="Black"></button>
+          <button class="swatch" style="background:#C4A882" aria-label="Beige"></button>
+          <button class="swatch" style="background:#E8E5DE" aria-label="White"></button>
+          <button class="swatch" style="background:#3D2B1F" aria-label="Brown"></button>
+          <button class="swatch" style="background:#C9A84C" aria-label="Gold"></button>
+          <button class="swatch" style="background:#B79376" aria-label="Tan"></button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- GRID -->
+    <section>
+      <div class="shop-toolbar">
+        <span class="results-count">Loading…</span>
+        <div class="toolbar-right">
+          <button class="mobile-filter-btn" onclick="document.querySelector('.shop-sidebar').classList.toggle('open')">
+            <span data-icon="filter"></span> Filters
+          </button>
+          <div class="search-bar-wrapper">
+            <input type="text" id="search-input" class="search-bar" placeholder="Search products…">
+            <span class="search-icon" data-icon="search"></span>
+          </div>
+          <select id="sort-select" class="select" style="width:200px">
+            <option value="default">Default Sort</option>
+            <option value="new">Newest First</option>
+            <option value="low">Price: Low to High</option>
+            <option value="high">Price: High to Low</option>
+            <option value="rating">Top Rated</option>
+          </select>
+        </div>
+      </div>
+      <div class="products-grid" id="products-grid"></div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">Trend<span>o</span>ra</div>
+        <p class="footer-desc">We believe true elegance begins with quality. Every product is carefully chosen to give you an unforgettable experience.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram" data-icon="ig"></a>
+          <a href="#" aria-label="Facebook" data-icon="fb"></a>
+          <a href="#" aria-label="Twitter" data-icon="tw"></a>
+          <a href="#" aria-label="Pinterest" data-icon="pin2"></a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Shop</h4><ul><li><a href="products.html">All Products</a></li><li><a href="products.html?cat=Women">Women</a></li><li><a href="products.html?cat=Men">Men</a></li><li><a href="offers.html">Sale</a></li></ul></div>
+      <div class="footer-col"><h4>Customer Care</h4><ul><li><a href="#">Track Order</a></li><li><a href="#">Returns</a></li><li><a href="#">Size Guide</a></li><li><a href="contact.html">FAQ</a></li></ul></div>
+      <div class="footer-col"><h4>Company</h4><ul><li><a href="about.html">About</a></li><li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li><li><a href="#">Careers</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 Trendora. All rights reserved.</span>
+      <div class="footer-pay">
+        <span class="footer-pay-icon">VISA</span><span class="footer-pay-icon">MC</span><span class="footer-pay-icon">AMEX</span><span class="footer-pay-icon">PAYPAL</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
+  <aside class="cart-drawer" id="cart-drawer">
+    <div class="cart-header">
+      <h3 class="cart-title">Shopping Bag</h3>
+      <button class="cart-close" onclick="toggleCart()" data-icon="close"></button>
+    </div>
+    <div class="cart-body" id="cart-body"></div>
+    <div class="cart-footer" id="cart-footer"></div>
+  </aside>
+
+  <div id="toast"></div>
+  <script src="store.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Apply ?cat= URL param
+      const params = new URLSearchParams(window.location.search);
+      const cat = params.get('cat');
+      if (cat) {
+        document.querySelectorAll('[data-cat]').forEach(x => x.classList.remove('active'));
+        const target = document.querySelector(`[data-cat="${cat}"]`);
+        if (target) {
+          target.classList.add('active');
+          ShopState.category = cat;
+          applyFilters();
+        }
+      }
+
+      // Update sidebar counts
+      const counts = {
+        all: PRODUCTS.length,
+        women: PRODUCTS.filter(p => p.category === 'Women').length,
+        men: PRODUCTS.filter(p => p.category === 'Men').length,
+        shoes: PRODUCTS.filter(p => p.category === 'Shoes').length,
+        acc: PRODUCTS.filter(p => p.category === 'Accessories').length,
+      };
+      Object.entries(counts).forEach(([k, v]) => {
+        const el = document.getElementById(`cnt-${k}`);
+        if (el) el.textContent = v;
+      });
+    });
+  </script>
+</body>
+</html>
