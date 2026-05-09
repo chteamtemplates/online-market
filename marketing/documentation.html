@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Trendora — Documentation</title>
+  <style>
+    /* ---------- Tokens ---------- */
+    :root {
+      --c-bg: #fbfaf7;
+      --c-surface: #ffffff;
+      --c-text: #1a1a1a;
+      --c-muted: #6b6b6b;
+      --c-border: #e8e3d8;
+      --c-accent: #c9a961;
+      --c-code-bg: #f5f1e8;
+      --c-code-text: #1a1a1a;
+      --r-sm: 6px;
+      --r-md: 12px;
+      --shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--c-text);
+      background: var(--c-bg);
+    }
+
+    /* ---------- Layout ---------- */
+    .layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      min-height: 100vh;
+    }
+
+    aside.sidebar {
+      position: sticky;
+      top: 0;
+      align-self: start;
+      height: 100vh;
+      overflow-y: auto;
+      background: var(--c-surface);
+      border-right: 1px solid var(--c-border);
+      padding: 32px 24px;
+    }
+
+    aside.sidebar .brand {
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      margin-bottom: 4px;
+    }
+
+    aside.sidebar .brand .accent { color: var(--c-accent); }
+
+    aside.sidebar .ver {
+      font-size: 12px;
+      color: var(--c-muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    aside.sidebar nav h4 {
+      margin: 24px 0 8px;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--c-muted);
+    }
+
+    aside.sidebar nav a {
+      display: block;
+      padding: 6px 8px;
+      color: var(--c-text);
+      text-decoration: none;
+      font-size: 14px;
+      border-radius: 4px;
+    }
+
+    aside.sidebar nav a:hover { background: var(--c-code-bg); color: var(--c-accent); }
+
+    main.content {
+      padding: 64px 80px;
+      max-width: 920px;
+    }
+
+    /* ---------- Typography ---------- */
+    h1 {
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 1.1;
+      margin: 0 0 16px;
+    }
+
+    h2 {
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 30px;
+      font-weight: 700;
+      margin-top: 56px;
+      margin-bottom: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--c-border);
+    }
+
+    h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-top: 32px;
+      margin-bottom: 8px;
+    }
+
+    p { margin: 12px 0; color: #2a2a2a; }
+
+    a { color: var(--c-accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    ul, ol { padding-left: 24px; }
+    li { margin: 4px 0; }
+
+    /* ---------- Code ---------- */
+    code {
+      font-family: "SF Mono", Menlo, Monaco, Consolas, monospace;
+      font-size: 13.5px;
+      background: var(--c-code-bg);
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    pre {
+      background: var(--c-code-bg);
+      color: var(--c-code-text);
+      padding: 18px 20px;
+      border-radius: var(--r-md);
+      overflow-x: auto;
+      font-family: "SF Mono", Menlo, Monaco, Consolas, monospace;
+      font-size: 13.5px;
+      line-height: 1.6;
+      box-shadow: var(--shadow);
+    }
+
+    pre code {
+      background: transparent;
+      padding: 0;
+      border-radius: 0;
+    }
+
+    /* ---------- Callouts ---------- */
+    .callout {
+      border-left: 4px solid var(--c-accent);
+      background: var(--c-code-bg);
+      padding: 12px 18px;
+      margin: 18px 0;
+      border-radius: 0 var(--r-sm) var(--r-sm) 0;
+    }
+
+    .callout strong { color: var(--c-accent); }
+
+    /* ---------- Table ---------- */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 18px 0;
+      font-size: 14.5px;
+      background: var(--c-surface);
+      border-radius: var(--r-md);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    th, td {
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--c-border);
+    }
+
+    th {
+      background: var(--c-code-bg);
+      font-weight: 600;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--c-muted);
+    }
+
+    tr:last-child td { border-bottom: none; }
+
+    /* ---------- Badge ---------- */
+    .pill {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      background: var(--c-accent);
+      color: #fff;
+      vertical-align: middle;
+      margin-left: 8px;
+    }
+
+    /* ---------- Mobile ---------- */
+    @media (max-width: 900px) {
+      .layout { grid-template-columns: 1fr; }
+      aside.sidebar {
+        position: relative;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--c-border);
+      }
+      main.content { padding: 32px 24px; }
+      h1 { font-size: 36px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="brand">TREND<span class="accent">O</span>RA</div>
+      <div class="ver">Documentation · v1.0</div>
+      <nav>
+        <h4>Getting Started</h4>
+        <a href="#intro">Introduction</a>
+        <a href="#install">Installation</a>
+        <a href="#structure">File structure</a>
+
+        <h4>Customization</h4>
+        <a href="#brand">Brand & colors</a>
+        <a href="#typography">Typography</a>
+        <a href="#products">Products</a>
+        <a href="#promo">Promo codes</a>
+        <a href="#shipping">Shipping rule</a>
+
+        <h4>Pages</h4>
+        <a href="#pages">All pages</a>
+
+        <h4>Backend</h4>
+        <a href="#backend">Connecting a backend</a>
+        <a href="#stripe">Stripe Checkout</a>
+        <a href="#shopify">Shopify Storefront</a>
+
+        <h4>Hosting</h4>
+        <a href="#deploy">Deployment options</a>
+
+        <h4>Support</h4>
+        <a href="#support">Help & contact</a>
+        <a href="#updates">Updates & versioning</a>
+      </nav>
+    </aside>
+
+    <!-- Content -->
+    <main class="content">
+      <h1 id="intro">Trendora <span class="pill">v1.0</span></h1>
+      <p style="font-size:18px;color:var(--c-muted)">A premium fashion e-commerce template — built with pure HTML, CSS &amp; Vanilla JS. No framework. No build step. No dependencies.</p>
+
+      <p>Welcome! This document walks you through everything you need to set up, customize, and ship Trendora as your own store. Read it once end-to-end (it's short) — you'll be productive in under 30 minutes.</p>
+
+      <div class="callout"><strong>TL;DR:</strong> Unzip the folder. Open <code>index.html</code> in a browser. You're live. To customize, edit <code>style.css</code> (look) and <code>store.js</code> (products, cart, promos).</div>
+
+      <!-- Installation -->
+      <h2 id="install">Installation</h2>
+      <p>Trendora is a static site. There is nothing to install, build, or compile.</p>
+
+      <h3>Option A — Open directly</h3>
+      <p>Just double-click <code>index.html</code>. Works in Chrome, Firefox, Safari, Edge.</p>
+
+      <h3>Option B — Local server (recommended for development)</h3>
+      <pre><code>cd trendora/
+python3 -m http.server 8000
+# then open http://localhost:8000</code></pre>
+
+      <p>Or with Node:</p>
+      <pre><code>npx serve .</code></pre>
+
+      <!-- Structure -->
+      <h2 id="structure">File structure</h2>
+      <pre><code>trendora/
+├── index.html         ← Home page
+├── products.html      ← Shop / catalog
+├── product.html       ← Product detail
+├── checkout.html      ← Checkout flow
+├── offers.html        ← Sale page
+├── about.html         ← About / brand story
+├── contact.html       ← Contact + FAQ
+├── style.css          ← All styles (1,500+ lines, commented)
+├── store.js           ← All logic (products, cart, wishlist, promos)
+├── favicon.svg        ← Brand favicon
+├── robots.txt         ← Crawler hints
+├── sitemap.xml        ← SEO sitemap
+├── README.md          ← Quick reference
+├── CUSTOMIZATION.md   ← In-repo customization notes
+└── LICENSE.md         ← Regular license</code></pre>
+
+      <!-- Brand colors -->
+      <h2 id="brand">Brand &amp; colors</h2>
+      <p>All colors live as <strong>CSS custom properties</strong> at the top of <code>style.css</code>. Change one value, the whole site updates.</p>
+
+      <pre><code>:root {
+  --color-bg: #fbfaf7;
+  --color-text: #1a1a1a;
+  --color-accent: #c9a961;   /* ← brand color, change this */
+  --color-success: #2d7a4a;
+  --color-danger:  #c53030;
+  /* ... */
+}</code></pre>
+
+      <p>Common rebrandings (paste into <code>:root</code> to override):</p>
+
+      <table>
+        <tr><th>Theme</th><th>Accent color</th></tr>
+        <tr><td>Gold (default)</td><td><code>#c9a961</code></td></tr>
+        <tr><td>Rose Gold</td><td><code>#b76e79</code></td></tr>
+        <tr><td>Emerald</td><td><code>#2d7a4a</code></td></tr>
+        <tr><td>Royal Blue</td><td><code>#1f3a93</code></td></tr>
+        <tr><td>Burgundy</td><td><code>#7a1c2f</code></td></tr>
+        <tr><td>Charcoal</td><td><code>#2a2a2a</code></td></tr>
+      </table>
+
+      <!-- Typography -->
+      <h2 id="typography">Typography</h2>
+      <p>Trendora uses two Google Fonts loaded via <code>&lt;link&gt;</code> in each HTML head:</p>
+      <ul>
+        <li><code>Playfair Display</code> — display / headings</li>
+        <li><code>Inter</code> — body / UI</li>
+      </ul>
+
+      <p>To swap fonts, edit the <code>&lt;link&gt;</code> tag in each HTML page and update these CSS variables:</p>
+
+      <pre><code>:root {
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-body:    "Inter", system-ui, sans-serif;
+}</code></pre>
+
+      <!-- Products -->
+      <h2 id="products">Adding / editing products</h2>
+      <p>All products are defined as a JS array near the top of <code>store.js</code>:</p>
+
+      <pre><code>const PRODUCTS = [
+  {
+    id: 1,
+    name: 'Classic Beige Trench Coat',
+    brand: 'Trendora Classic',
+    price: 189.00,
+    oldPrice: null,           // null if not on sale
+    category: 'Women',         // Women | Men | Shoes | Accessories
+    badge: 'New',              // New | Sale | Best Seller | null
+    color: '#c9b894',
+    rating: 4.8,
+    reviews: 124,
+    stock: 12,
+    image: 'https://...',
+    gallery: ['https://...', 'https://...'],
+    desc: 'Long-form description of the product…',
+  },
+  // ... add more
+];</code></pre>
+
+      <div class="callout"><strong>Tip:</strong> All product images use Unsplash placeholders. <strong>Replace them with your own product photos before launch</strong> — Unsplash images aren't licensed for use as commercial product imagery.</div>
+
+      <!-- Promo -->
+      <h2 id="promo">Promo codes</h2>
+      <p>Defined in <code>store.js</code>:</p>
+
+      <pre><code>const PROMO_CODES = {
+  TRENDORA10: { type: 'percent',  value: 0.10, label: '10% off your order' },
+  SUMMER25:   { type: 'percent',  value: 0.25, label: '25% off summer collection' },
+  FREESHIP:   { type: 'shipping', value: 0,    label: 'Free shipping' },
+};</code></pre>
+
+      <p>To add a new code:</p>
+
+      <pre><code>PROMO_CODES.WELCOME20 = {
+  type: 'percent',          // 'percent' | 'fixed' | 'shipping'
+  value: 0.20,              // 0.20 = 20%, or 25 = $25 fixed
+  label: '20% welcome discount'
+};</code></pre>
+
+      <!-- Shipping -->
+      <h2 id="shipping">Shipping rule</h2>
+      <p>By default, shipping is <strong>$15 flat, free over $100</strong>. To change, edit <code>store.js</code>:</p>
+
+      <pre><code>const SHIPPING_FLAT = 15;
+const FREE_SHIPPING_THRESHOLD = 100;</code></pre>
+
+      <!-- Pages -->
+      <h2 id="pages">All pages</h2>
+      <table>
+        <tr><th>Page</th><th>File</th><th>What it does</th></tr>
+        <tr><td>Home</td><td><code>index.html</code></td><td>Hero, trust bar, categories, featured products, testimonials, newsletter</td></tr>
+        <tr><td>Shop</td><td><code>products.html</code></td><td>Sidebar filters, search, sort, product grid</td></tr>
+        <tr><td>Product</td><td><code>product.html?id=N</code></td><td>Image gallery, variants, add to bag, related products</td></tr>
+        <tr><td>Checkout</td><td><code>checkout.html</code></td><td>3-step form, order summary, promo, success view</td></tr>
+        <tr><td>Offers</td><td><code>offers.html</code></td><td>Countdown timer, sale grid, copyable promo codes</td></tr>
+        <tr><td>About</td><td><code>about.html</code></td><td>Brand story, values, team</td></tr>
+        <tr><td>Contact</td><td><code>contact.html</code></td><td>Contact info, message form, FAQ accordion</td></tr>
+      </table>
+
+      <!-- Backend -->
+      <h2 id="backend">Connecting a backend</h2>
+      <p>Trendora ships as a frontend template. The cart, wishlist, and orders are stored in the browser via <code>localStorage</code>. To make orders <em>actually persist server-side</em>, you have two main paths:</p>
+      <ol>
+        <li><strong>Use a hosted commerce backend</strong> (Shopify, Snipcart, Foxy, Lemon Squeezy, Paddle) — recommended.</li>
+        <li><strong>Build your own backend</strong> and replace the <code>localStorage</code> calls with <code>fetch</code> calls.</li>
+      </ol>
+
+      <h3 id="stripe">Stripe Checkout (easiest)</h3>
+      <p>For each product, create a Stripe Payment Link in your dashboard. Then in <code>checkout.html</code>'s submit handler, redirect to the link instead of showing the local success view:</p>
+
+      <pre><code>// Replace the success view with a Stripe redirect
+window.location.href = 'https://buy.stripe.com/your-payment-link';</code></pre>
+
+      <h3 id="shopify">Shopify Storefront API</h3>
+      <p>To use your existing Shopify catalog, replace <code>PRODUCTS</code> with a fetch call to Shopify's Storefront API. Documentation: <a href="https://shopify.dev/docs/api/storefront" target="_blank" rel="noopener">shopify.dev/docs/api/storefront</a>.</p>
+
+      <pre><code>const res = await fetch('https://YOUR_STORE.myshopify.com/api/2024-04/graphql.json', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json', 'X-Shopify-Storefront-Access-Token': 'YOUR_TOKEN' },
+  body: JSON.stringify({ query: '{ products(first: 50) { edges { node { id title handle priceRange { minVariantPrice { amount } } } } } }' }),
+});</code></pre>
+
+      <!-- Deploy -->
+      <h2 id="deploy">Deployment options</h2>
+      <p>Because Trendora is a static site, you can host it for free on:</p>
+      <ul>
+        <li><strong>GitHub Pages</strong> — push to a repo, enable Pages in Settings. Free.</li>
+        <li><strong>Netlify</strong> — drag &amp; drop the folder onto netlify.com/drop. Free + auto HTTPS.</li>
+        <li><strong>Vercel</strong> — <code>vercel deploy</code>. Free + auto HTTPS.</li>
+        <li><strong>Cloudflare Pages</strong> — connect your GitHub repo. Free + global CDN.</li>
+        <li><strong>S3 + CloudFront</strong> — for AWS users.</li>
+        <li><strong>Any shared hosting (cPanel, Plesk)</strong> — upload the files via FTP.</li>
+      </ul>
+
+      <!-- Support -->
+      <h2 id="support">Support &amp; contact</h2>
+      <p>Need help? Email <a href="mailto:support@trendora.example">support@trendora.example</a> with:</p>
+      <ul>
+        <li>Your purchase ID</li>
+        <li>A description of what you're trying to do</li>
+        <li>A screenshot or short video if relevant</li>
+      </ul>
+      <p>Target response: 24 hours on business days.</p>
+
+      <h2 id="updates">Updates &amp; versioning</h2>
+      <p>Trendora follows <a href="https://semver.org" target="_blank" rel="noopener">SemVer</a>:</p>
+      <ul>
+        <li><strong>MAJOR</strong> (e.g., 1.0 → 2.0): breaking changes</li>
+        <li><strong>MINOR</strong> (e.g., 1.0 → 1.1): new features, no breaking changes</li>
+        <li><strong>PATCH</strong> (e.g., 1.0.0 → 1.0.1): bug fixes</li>
+      </ul>
+      <p>See <code>CHANGELOG.md</code> for the full history. All updates are <strong>free for life</strong>.</p>
+
+      <p style="margin-top:64px;text-align:center;color:var(--c-muted);font-size:13px;border-top:1px solid var(--c-border);padding-top:32px;">
+        Thank you for choosing Trendora. We hope it serves you well.<br>
+        — The Trendora team
+      </p>
+    </main>
+  </div>
+</body>
+</html>
